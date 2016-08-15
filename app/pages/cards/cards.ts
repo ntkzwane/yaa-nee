@@ -1,9 +1,7 @@
 import {NavController, Page, NavParams} from 'ionic-angular';
-import {EndGame} from "../../components/end-game/end-game";
 
 @Page({
-  templateUrl: 'build/pages/cards/cards.html',
-  directives: [EndGame]
+  templateUrl: 'build/pages/cards/cards.html'
 })
 export class CardsPage {
   words : string[] = [];

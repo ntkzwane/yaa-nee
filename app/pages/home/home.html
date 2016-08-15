@@ -6,16 +6,20 @@
     </ion-title>
     <ion-buttons end secondary>
       <button
+        (click)="info()">
+        <ion-icon name="ios-information-circle-outline"></ion-icon>
+      </button>
+      <button
         (click)="startGame(text)"
         [disabled]="!canStartGame()">
-        <ion-icon name="checkmark"></ion-icon>
+        <ion-icon name="arrow-forward"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home" padding>
-  <ion-card *ngFor="let word of words; let i = index">
+  <ion-card *ngFor="let word of words; let i = index" padding>
     <ion-row>
       <ion-col *ngIf="word.selected" width-90 text-center (click)="toggleSelected(i)" class="selected-word">{{word.text}}</ion-col>
       <ion-col *ngIf="!word.selected" width-90 text-center (click)="toggleSelected(i)">{{word.text}}</ion-col>

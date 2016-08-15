@@ -1,4 +1,4 @@
-import {NavController, Page, Events, Storage, LocalStorage,} from 'ionic-angular';
+import {NavController, Page, Events, Storage, LocalStorage, AlertController} from 'ionic-angular';
 import {CardsPage} from "../cards/cards";
 
 @Page({
@@ -9,7 +9,8 @@ export class HomePage {
   localStorage : Storage = new Storage(LocalStorage);
   words : { text : string, selected : boolean }[];
 
-  constructor(public nav: NavController, public events : Events) {
+  constructor(public nav: NavController, public events : Events,
+    private popup : AlertController) {
     this.initEvent();
   }
 
@@ -58,6 +59,19 @@ export class HomePage {
     this.events.subscribe(this.SAVE_WORDS, () => {
       this.localStorage.setJson(this.SAVE_WORDS, this.words);
     });
+  }
+
+  info() : void {
+    const popup = this.popup.create({
+      title: 'Easy Peasy',
+      subTitle: `
+        Add a word or a list of comma-separated words in the input field
+        at the bottom of the screen. Select the words you want to use by tapping
+        on the card (selected words are highlighted in blue).
+        Then tap the button on the top left to start the game.`,
+      buttons: ['OK']
+    });
+    popup.present();
   }
 
   onPageWillEnter() : any {
