@@ -1,0 +1,7 @@
+@import "app.variables";
+
+.home {
+  .selected-word {
+    color: color($colors, primary);
+  }
+}

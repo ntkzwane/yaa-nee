@@ -1,0 +1,28 @@
+<ion-toolbar position="top" favorite>
+  <ion-navbar>
+    <ion-title text-center>
+      Yaa-Nee
+    </ion-title>
+  </ion-navbar>
+</ion-toolbar>
+
+<ion-content class="home" padding>
+  <ion-card *ngFor="let word of words; let i = index">
+    <ion-row>
+      <ion-col *ngIf="word.selected" width-90 text-center (click)="toggleSelected(i)" class="selected-word">{{word.text}}</ion-col>
+      <ion-col *ngIf="!word.selected" width-90 text-center (click)="toggleSelected(i)">{{word.text}}</ion-col>
+      <ion-col width-10 (click)="removeWord(i)"><ion-icon name="trash"></ion-icon></ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+
+<ion-toolbar position="bottom" favorite>
+  <ion-input #text class="footer-input" placeholder="Enter some words" (keyup.enter)="addWord(text)"></ion-input>
+  <ion-buttons end secondary>
+    <button
+      (click)="addWord(text)"
+      [disabled]="text.value === ''">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
