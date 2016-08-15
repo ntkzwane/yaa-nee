@@ -1,0 +1,24 @@
+<!-- mid game -->
+<ion-content *ngIf="!isEndGame()" class="game-page" (click)="next()" padding>
+    <ion-card>{{focusedWord.word}}</ion-card>
+</ion-content>
+
+<!-- on end game -->
+<ion-content *ngIf="isEndGame()">
+  <ion-card *ngFor="let word of words">
+    {{word}}
+  </ion-card>
+
+  <ion-row>
+    <ion-col width-50>
+      <button navPop block>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col width-50>
+      <button (click)="initGame()" block>
+        <ion-icon name="repeat"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-content>

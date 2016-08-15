@@ -1,4 +1,5 @@
 import {NavController, Page, Events, Storage, LocalStorage,} from 'ionic-angular';
+import {CardsPage} from "../cards/cards";
 
 @Page({
   templateUrl: 'build/pages/home/home.html'
@@ -10,6 +11,17 @@ export class HomePage {
 
   constructor(public nav: NavController, public events : Events) {
     this.initEvent();
+  }
+
+  startGame() : void {
+    const params = this.words.filter(word => word.selected).map(word => word.text);
+    this.nav.push(CardsPage, { words: params });
+  }
+
+  canStartGame() : boolean {
+    return this.words !== undefined &&
+      this.words.length > 0 &&
+      this.words.filter(word => word.selected).length > 0;
   }
 
   removeWord(index : number) : void {
@@ -39,6 +51,7 @@ export class HomePage {
 
   toggleSelected(index : number) : void {
     this.words[index].selected = !this.words[index].selected;
+    this.events.publish(this.SAVE_WORDS);
   }
 
   initEvent() : void {

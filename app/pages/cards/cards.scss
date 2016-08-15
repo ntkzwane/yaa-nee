@@ -1,0 +1,9 @@
+@import "app.variables";
+
+.game-page {
+  ion-card {
+    font-size: 100px;
+    background-color: color($colors, favorite);
+    padding: 12vh;
+  }
+}
