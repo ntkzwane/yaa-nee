@@ -7,7 +7,7 @@ import {CardsPage} from "../cards/cards";
 export class HomePage {
   SAVE_WORDS = 'save.words';
   localStorage : Storage = new Storage(LocalStorage);
-  words : { text : string, selected : boolean }[] = [];
+  words : { text : string, selected : boolean }[];
 
   constructor(public nav: NavController, public events : Events,
     private popup : AlertController) {
@@ -64,13 +64,13 @@ export class HomePage {
 
   info() : void {
     const popup = this.popup.create({
-      title: 'Easy Peasy',
-      subTitle: `
-        Add a word or a list of comma-separated words in the input field
-        at the bottom of the screen. Select the words you want to use by tapping
-        on the card (selected words are highlighted in blue).
-        Then tap the arrow on the top left to start the game.
-        Flip your phone before starting the game, it looks better in landscape mode.`,
+      title: 'What to do',
+      message: `
+          Add a word or a list of comma-separated words in the input field
+          at the bottom of the screen. Select the words you want to use by tapping
+          on the card (selected words are highlighted in blue).
+          Tap the arrow on the top left to start the game.
+          Flip your phone before starting the game, it looks better in landscape mode`,
       buttons: ['OK']
     });
     popup.present();
@@ -78,8 +78,10 @@ export class HomePage {
 
   onPageWillEnter() : any {
     this.localStorage.getJson(this.SAVE_WORDS).then((words) => {
-      if (words === null && words === undefined) {
+      if (words !== null && words !== undefined) {
         this.words = words
+      } else {
+        this.words = [];
       }
     });
     return undefined;
